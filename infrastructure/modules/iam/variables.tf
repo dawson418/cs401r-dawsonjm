@@ -9,3 +9,8 @@ variable "environment" {
   description = "Deployment environment (dev, staging, prod)"
   type        = string
 }
+
+variable "bucket_name" {
+  description = "Name of the S3 bucket the MLEngineer role can access"
+  type        = string
+}

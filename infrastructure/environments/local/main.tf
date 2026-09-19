@@ -16,10 +16,12 @@ module "storage" {
   source      = "../../modules/storage"
   project     = var.project
   environment = var.environment
+  bucket_name = "${var.project}-${var.environment}-data-000000000000"
 }
 
 module "iam" {
   source      = "../../modules/iam"
   project     = var.project
   environment = var.environment
+  bucket_name = "${var.project}-${var.environment}-data-000000000000"
 }
