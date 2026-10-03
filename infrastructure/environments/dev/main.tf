@@ -50,4 +50,15 @@ module "glue" {
   security_group_id     = module.vpc.security_group_id
   availability_zone     = var.availability_zone
   transform_script_path = "${path.root}/../../../glue-scripts/transform.py"
+  feature_script_path   = "${path.root}/../../../glue-scripts/feature_engineer.py"
+  feature_group_name    = module.feature_store.feature_group_name
+  region                = var.aws_region
+}
+
+module "feature_store" {
+  source      = "../../modules/feature_store"
+  project     = var.project
+  environment = var.environment
+  bucket_name = module.storage.bucket_name
+  role_arn    = module.iam.data_engineer_role_arn
 }

@@ -61,3 +61,24 @@ variable "script_prefix" {
   type        = string
   default     = "artifacts/glue/"
 }
+
+variable "feature_script_path" {
+  description = "Local path to the feature_engineer.py Glue script that is uploaded to S3"
+  type        = string
+}
+
+variable "features_prefix" {
+  description = "S3 prefix the feature-engineer job writes Parquet to (separate from the Feature Store offline store prefix)"
+  type        = string
+  default     = "features/customers/"
+}
+
+variable "feature_group_name" {
+  description = "Name of the SageMaker Feature Group the feature-engineer job ingests into"
+  type        = string
+}
+
+variable "region" {
+  description = "AWS region for the Feature Store runtime client used by the feature-engineer job"
+  type        = string
+}
