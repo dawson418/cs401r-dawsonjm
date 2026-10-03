@@ -7,16 +7,18 @@
 # terraform validate still passes — an empty module is a valid module.
 
 module "vpc" {
-  source      = "../../modules/vpc"
-  project     = var.project
-  environment = var.environment
+  source             = "../../modules/vpc"
+  project            = var.project
+  environment        = var.environment
+  enable_nat_gateway = false # NAT Gateways are not supported in LocalStack Community
 }
 
 module "storage" {
-  source      = "../../modules/storage"
-  project     = var.project
-  environment = var.environment
-  bucket_name = "${var.project}-${var.environment}-data-000000000000"
+  source                 = "../../modules/storage"
+  project                = var.project
+  environment            = var.environment
+  bucket_name            = "${var.project}-${var.environment}-data-000000000000"
+  enable_lifecycle_rules = false # lifecycle config is skipped locally
 }
 
 module "iam" {

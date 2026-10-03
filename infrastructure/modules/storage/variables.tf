@@ -20,3 +20,15 @@ variable "bucket_name" {
   description = "Name of the S3 bucket"
   type        = string
 }
+
+variable "enable_lifecycle_rules" {
+  description = "Create the S3 lifecycle configuration (false in LocalStack)"
+  type        = bool
+  default     = true
+}
+
+variable "force_destroy" {
+  description = "Allow terraform destroy to delete the bucket with all object versions (synthetic dev data only)"
+  type        = bool
+  default     = false
+}

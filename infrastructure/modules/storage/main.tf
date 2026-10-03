@@ -15,7 +15,8 @@
 # to exist before anything is written to it.
 
 resource "aws_s3_bucket" "data" {
-  bucket = var.bucket_name
+  bucket        = var.bucket_name
+  force_destroy = var.force_destroy
 
   tags = {
     Name = var.bucket_name
@@ -55,4 +56,67 @@ resource "aws_s3_object" "prefixes" {
   bucket  = aws_s3_bucket.data.id
   key     = each.value
   content = ""
+}
+
+resource "aws_s3_bucket_lifecycle_configuration" "main" {
+  count  = var.enable_lifecycle_rules ? 1 : 0
+  bucket = aws_s3_bucket.data.id
+
+  # Lifecycle rules need versioning in place first
+  depends_on = [aws_s3_bucket_versioning.main]
+
+  rule {
+    id     = "expire-raw-data"
+    status = "Enabled"
+    filter {
+      prefix = "raw/"
+    }
+    expiration {
+      days = 90
+    }
+  }
+
+  rule {
+    id     = "expire-raw-versions"
+    status = "Enabled"
+    filter {
+      prefix = "raw/"
+    }
+    noncurrent_version_expiration {
+      noncurrent_days = 30
+    }
+  }
+
+  rule {
+    id     = "expire-processed-versions"
+    status = "Enabled"
+    filter {
+      prefix = "processed/"
+    }
+    noncurrent_version_expiration {
+      noncurrent_days = 30
+    }
+  }
+
+  rule {
+    id     = "expire-feature-versions"
+    status = "Enabled"
+    filter {
+      prefix = "features/"
+    }
+    noncurrent_version_expiration {
+      noncurrent_days = 60
+    }
+  }
+
+  rule {
+    id     = "expire-datacapture"
+    status = "Enabled"
+    filter {
+      prefix = "datacapture/"
+    }
+    expiration {
+      days = 7
+    }
+  }
 }
