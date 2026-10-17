@@ -1,0 +1,71 @@
+sagemaker.config INFO - Not applying SDK defaults from location: /Library/Application Support/sagemaker/config.yaml
+sagemaker.config INFO - Not applying SDK defaults from location: /Users/dawson.m/Library/Application Support/sagemaker/config.yaml
+/Users/dawson.m/Desktop/cs401-r/cs401r-dawsonjm/.venv/lib/python3.12/site-packages/sagemaker/__init__.py:86: SageMakerV2DeprecationWarning: You are using the SageMaker Python SDK v2, which is on path of deprecation. v3 is the actively developed major version.
+See https://github.com/aws/sagemaker-python-sdk/blob/master/migration.md for the migration guide. Set SAGEMAKER_SUPPRESS_V2_WARNING=1 to silence this warning.
+  warn_v2_deprecation()
+You are using the SageMaker Python SDK v2, which is on path of deprecation. v3 is the actively developed major version.
+See https://github.com/aws/sagemaker-python-sdk/blob/master/migration.md for the migration guide. Set SAGEMAKER_SUPPRESS_V2_WARNING=1 to silence this warning.
+============================================================
+NorthStar Churn Prediction — Training Script
+XGBoost 3.4.1 | include_risk_score=False
+============================================================
+Athena QueryExecutionId: 0317df28-cb80-4baa-82fe-5bc7766b86e5
+Athena returned 9,999 rows
+Preprocessing 9,999 samples...
+  Positive class rate: 22.0%
+  Feature matrix shape: (9999, 11); missing values left as NaN: 0
+
+Fit: 5,949 | Early-stop: 1,050 | Test: 3,000
+
+Training XGBoost with params: {
+  "objective": "binary:logistic",
+  "eval_metric": [
+    "logloss",
+    "auc"
+  ],
+  "max_depth": 4,
+  "eta": 0.05,
+  "min_child_weight": 5,
+  "subsample": 0.8,
+  "colsample_bytree": 0.8,
+  "scale_pos_weight": 3.544690603514133,
+  "seed": 42,
+  "verbosity": 1
+}
+[0]	train-logloss:0.68157	train-auc:0.76147	early_stop-logloss:0.68250	early_stop-auc:0.74789
+[25]	train-logloss:0.55132	train-auc:0.80186	early_stop-logloss:0.56937	early_stop-auc:0.76947
+[50]	train-logloss:0.51863	train-auc:0.81274	early_stop-logloss:0.54603	early_stop-auc:0.77472
+[75]	train-logloss:0.50161	train-auc:0.82708	early_stop-logloss:0.53726	early_stop-auc:0.77945
+[100]	train-logloss:0.48704	train-auc:0.84250	early_stop-logloss:0.52997	early_stop-auc:0.78172
+[117]	train-logloss:0.48150	train-auc:0.84901	early_stop-logloss:0.52944	early_stop-auc:0.78056
+/Users/dawson.m/Desktop/cs401-r/cs401r-dawsonjm/models/churn/train.py:525: UserWarning: [17:13:03] WARNING: /Users/runner/work/xgboost/xgboost/src/c_api/c_api.cc:1553: Saving model in the UBJSON format as default.  You can use a file extension: `json` or `ubj` to choose between formats.
+  model.save_model(model_path)
+Best iteration: 97
+
+── Evaluation Results (test set) ───────────────────
+  auc_roc                  : 0.7846 (reported, not gated)
+  baseline_auc (recency)   : 0.7203
+  precision_top10          : 0.7167 (threshold: 0.50) PASS
+  recall_top10             : 0.3258 (threshold: 0.25) PASS
+  auc_lift 95% CI          : [0.0446, 0.0840] (must exclude 0) PASS
+  All gates passed
+
+── Slice evaluation by loyalty tier ────────────────
+  tier            n   pos     AUC  recall  notes
+  Bronze       1071   361  0.7606  0.4266  
+  Gold          483    52  0.7551  0.1154  recall >10pp below aggregate
+  Platinum      307    21  0.8765  0.1429  TOO SMALL (<30 positives); recall >10pp below aggregate
+  Silver       1139   226  0.7179  0.2301  
+
+✓ Wrote slice-evaluation.csv, confusion-matrix.png, feature-importance.png to docs/lab3-evidence
+🏃 View run final-graded at: https://mlflow.sagemaker.us-east-1.app.aws/#/experiments/1/runs/a43897c6c10c44998b3e42c3c738c863
+🧪 View experiment at: https://mlflow.sagemaker.us-east-1.app.aws/#/experiments/1
+
+✓ Logged run 'final-graded' to MLflow App
+
+✓ Model saved to ./model/model.xgb
+✓ Registered arn:aws:sagemaker:us-east-1:649249221429:model-package/northstar-churn-models/1 (PendingManualApproval)
+
+============================================================
+Training complete. AUC-ROC: 0.7846
+============================================================

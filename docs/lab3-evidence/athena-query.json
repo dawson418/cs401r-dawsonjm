@@ -1,0 +1,9 @@
+{
+  "QueryExecutionId": "0317df28-cb80-4baa-82fe-5bc7766b86e5",
+  "Query": "WITH ranked AS (\n            SELECT\n                customer_id,\n                days_since_last_purchase, customer_tenure_days, purchase_frequency_30d, purchase_frequency_90d, purchase_frequency_180d, avg_order_value, total_spend_90d, total_lifetime_value, avg_basket_size_6m, category_diversity_score, online_to_store_ratio, churn_risk_score,\n                churn_label,\n                loyalty_tier,\n                event_time,\n                ROW_NUMBER() OVER (\n                    PARTITION BY customer_id\n                    ORDER BY event_time DESC, write_time DESC\n                ) AS rn\n            FROM \"northstar_dev_customer_features_1792188542\"\n            WHERE event_time BETWEEN 1767225600.0 AND 1798761600.0\n              AND NOT is_deleted\n        )\n        SELECT\n            customer_id,\n            days_since_last_purchase, customer_tenure_days, purchase_frequency_30d, purchase_frequency_90d, purchase_frequency_180d, avg_order_value, total_spend_90d, total_lifetime_value, avg_basket_size_6m, category_diversity_score, online_to_store_ratio, churn_risk_score,\n            churn_label,\n            loyalty_tier\n        FROM ranked\n        WHERE rn = 1\n        ORDER BY customer_id",
+  "State": "SUCCEEDED",
+  "Submitted": "2026-10-16 17:12:48.264000-06:00",
+  "Database": "sagemaker_featurestore",
+  "DataScannedBytes": 729626,
+  "OutputLocation": "s3://northstar-dev-data-649249221429/artifacts/athena-results/0317df28-cb80-4baa-82fe-5bc7766b86e5.csv"
+}

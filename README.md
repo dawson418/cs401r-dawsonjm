@@ -95,3 +95,9 @@ bash scripts/teardown-lab2.sh 2>&1 | tee docs/lab2-destroy-output.txt
 | `docs/lab2-data-contract.md` | Data contract for `processed/customers/` |
 | `docs/lab2-data-lineage.png` | Lineage diagram with formats and IAM roles |
 | `docs/lab2-destroy-output.txt` | Clean teardown evidence (committed to `main` after tagging) |
+
+## Lab 3
+Train: `python models/churn/train.py --feature-group-name $FG --artifacts-bucket $BUCKET --mlflow-arn $MLFLOW_APP_ARN --max-depth 4 --eta 0.05 --num-round 400 --run-name final-graded --register --output-data-dir docs/lab3-evidence 2>&1 | tee docs/lab3-evidence/train-final.log`
+Offers: `python -m rag.pipeline`; examples: `python -m rag.make_examples`; docs: `python scripts/make_docs.py`.
+Artifacts: `docs/lab3-evidence/` (metrics, slices, plots, logs, MLflow/registry exports), `docs/lab3-evaluation-report.md`, `docs/lab3-model-design.md`, `notebooks/lab3-demo.ipynb`.
+Evaluate Track B: `python -m rag.evaluate --runs 3`.

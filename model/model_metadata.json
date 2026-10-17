@@ -1,0 +1,36 @@
+{
+  "feature_columns": [
+    "days_since_last_purchase",
+    "customer_tenure_days",
+    "purchase_frequency_30d",
+    "purchase_frequency_90d",
+    "purchase_frequency_180d",
+    "avg_order_value",
+    "total_spend_90d",
+    "total_lifetime_value",
+    "avg_basket_size_6m",
+    "category_diversity_score",
+    "online_to_store_ratio"
+  ],
+  "label_column": "churn_label",
+  "hyperparameters": {
+    "max_depth": 4,
+    "eta": 0.05,
+    "num_round": 400
+  },
+  "xgboost_version": "3.4.1",
+  "evaluation_metrics": {
+    "auc_roc": 0.7846,
+    "precision_top10": 0.7167,
+    "recall_top10": 0.3258,
+    "auc_vs_baseline": 0.0643,
+    "baseline_auc": 0.7203,
+    "lift_ci_low": 0.0446,
+    "lift_ci_high": 0.084,
+    "positive_rate_val": 0.22,
+    "n_val_samples": 3000,
+    "eval_timestamp": "2026-10-16T23:12:58.591185+00:00",
+    "n_train_samples": 5949
+  },
+  "training_date": "2026-10-16T23:13:03.757406+00:00"
+}
