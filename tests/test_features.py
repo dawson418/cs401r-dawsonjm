@@ -350,8 +350,3 @@ class TestEdgeCases:
         row = f[f["customer_id"] == "CUST-NONE"].iloc[0]
         assert row["days_since_last_purchase"] == 999
         assert row["purchase_frequency_90d"] == 0 and row["total_spend_90d"] == 0
-
-
-def test_deliberate_failure_for_pipeline_demo():
-    """Lab 4 Task 2 failure demo: this MUST fail so PRE_BUILD stops the pipeline."""
-    assert 1 + 1 == 3, "DELIBERATE FAILURE: demonstrating that CI halts before training/registration"
