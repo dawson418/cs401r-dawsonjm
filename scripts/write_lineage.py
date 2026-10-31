@@ -56,7 +56,7 @@ def run(sm=None, s3=None, version=None, account=None, out="docs/lab4-model-packa
         "lift_ci_low": f"{m['lift_ci_low']:.4f}",
         "lift_ci_high": f"{m['lift_ci_high']:.4f}",
     }
-    sm.update_model_package(ModelPackageArn=arn, CustomerMetadataPropertiesToAdd=props)
+    sm.update_model_package(ModelPackageArn=arn, CustomerMetadataProperties=props)
     desc = sm.describe_model_package(ModelPackageName=arn)
     with open(out, "w") as f:
         json.dump(desc, f, indent=2, default=str)

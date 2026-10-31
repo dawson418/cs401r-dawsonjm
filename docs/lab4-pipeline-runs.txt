@@ -1,0 +1,51 @@
+===== CodePipeline executions: start, status, commit, execution id =====
+2026-10-31T10:08:26.702000-06:00	InProgress	11334c5863bfdf722937b378d7e8e0b85f88992c	0c8d7d28-b157-4af8-8779-c8dc2c29b19d
+2026-10-31T09:48:40.651000-06:00	Failed	4f2e3da5018e3d249b13d823c51d89be4046b288	2d02e255-b515-4a94-8bcc-e7969fd07cd6
+2026-10-31T09:29:24.439000-06:00	InProgress	bab04e7155b9dc66818c08971d21a4595ac0c03e	4683b391-adcb-40c2-8897-9d63cf546af0
+
+===== CodeBuild builds, newest first: start, status, commit, build id =====
+2026-10-31T10:08:33.908000-06:00	SUCCEEDED	11334c5863bfdf722937b378d7e8e0b85f88992c	northstar-ci:6daaddf9-32fb-4461-ba2a-c35b09def179
+    SUBMITTED	SUCCEEDED
+    QUEUED	SUCCEEDED
+    PROVISIONING	SUCCEEDED
+    DOWNLOAD_SOURCE	SUCCEEDED
+    INSTALL	SUCCEEDED
+    PRE_BUILD	SUCCEEDED
+    BUILD	SUCCEEDED
+    POST_BUILD	SUCCEEDED
+    UPLOAD_ARTIFACTS	SUCCEEDED
+    FINALIZING	SUCCEEDED
+    COMPLETED	None
+    pytest: ============================== 28 passed in 0.98s ==============================
+    pytest: ============================== 22 passed in 0.58s ==============================
+    pytest: ======================== 25 passed, 5 warnings in 1.63s ========================
+2026-10-31T09:48:46.627000-06:00	FAILED	4f2e3da5018e3d249b13d823c51d89be4046b288	northstar-ci:ddc1b1ca-fb03-4a41-980d-363750edcbd2
+    SUBMITTED	SUCCEEDED
+    QUEUED	SUCCEEDED
+    PROVISIONING	SUCCEEDED
+    DOWNLOAD_SOURCE	SUCCEEDED
+    INSTALL	SUCCEEDED
+    PRE_BUILD	FAILED
+    FINALIZING	SUCCEEDED
+    COMPLETED	None
+    pytest: ============================== 28 passed in 0.97s ==============================
+    pytest: ========================= 1 failed, 22 passed in 0.61s =========================
+2026-10-31T09:29:34.169000-06:00	SUCCEEDED	bab04e7155b9dc66818c08971d21a4595ac0c03e	northstar-ci:3006866c-3be4-4571-9059-5e02f6c48d67
+    SUBMITTED	SUCCEEDED
+    QUEUED	SUCCEEDED
+    PROVISIONING	SUCCEEDED
+    DOWNLOAD_SOURCE	SUCCEEDED
+    INSTALL	SUCCEEDED
+    PRE_BUILD	SUCCEEDED
+    BUILD	SUCCEEDED
+    POST_BUILD	SUCCEEDED
+    UPLOAD_ARTIFACTS	SUCCEEDED
+    FINALIZING	SUCCEEDED
+    COMPLETED	None
+    pytest: ============================== 28 passed in 0.89s ==============================
+    pytest: ============================== 22 passed in 0.52s ==============================
+    pytest: ================== 24 passed, 1 skipped, 4 warnings in 1.35s ===================
+
+===== SageMaker Pipeline executions: start, status, name =====
+2026-10-31T10:10:03.279000-06:00	Succeeded	codebuild-11334c58
+2026-10-31T09:31:02.221000-06:00	Succeeded	codebuild-bab04e71

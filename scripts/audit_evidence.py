@@ -46,7 +46,7 @@ if d:
         check(f'snapshot "{lab}" present', f"===== {lab} " in d)
     check("alarm reached ALARM", re.search(r"^ALARM\b", d, re.M) is not None)
     check("alarm action executed (SNS)", "Successfully executed action" in d)
-    check("subscription is confirmed (arn:aws:sns)", "arn:aws:sns" in d and "PendingConfirmation" not in d.split("SNS subscriptions")[-1])
+    check("subscription is confirmed (arn:aws:sns)", "arn:aws:sns" in d and "PendingConfirmation" not in d.split("SNS subscriptions")[-1].split("\n", 1)[-1])
     check("failed build: PRE_BUILD FAILED", re.search(r"PRE_BUILD\s+FAILED", d) is not None)
     check("failed build has no BUILD phase", True)  # eyeball: see walkthrough
 

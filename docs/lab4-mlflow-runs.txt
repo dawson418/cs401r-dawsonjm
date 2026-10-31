@@ -1,0 +1,7 @@
+tracking_uri: arn:aws:sagemaker:us-east-1:649249221429:mlflow-app/app-6GXETUL6KOML
+
+                             run_id tags.mlflow.runName                       start_time  metrics.auc_lift_over_baseline  metrics.baseline_auc_roc  metrics.precision_top10  metrics.recall_top10  metrics.auc_roc params.num_rounds params.max_depth params.eta
+0  0a9bea03703542a3b202e1aeea355ae4        lab4-combo-4 2026-10-31 16:14:50.252000+00:00                        0.037460                  0.733764                 0.690000              0.313636         0.771224               500                6       0.03
+1  597ac4b73a644ddebdc2a86b49728ac5        lab4-combo-3 2026-10-31 16:14:48.264000+00:00                        0.035613                  0.733764                 0.690000              0.313636         0.769376               400                5       0.05
+2  237bb935c525478aaf769648fcd5d2d8        lab4-combo-2 2026-10-31 16:14:46.317000+00:00                        0.034462                  0.733764                 0.690000              0.313636         0.768225               300                4       0.08
+3  7c2d87c13afb45808bd8acabd3f2854e        lab4-combo-1 2026-10-31 16:14:44.221000+00:00                        0.045656                  0.733764                 0.706667              0.321212         0.779419               200                3        0.1
