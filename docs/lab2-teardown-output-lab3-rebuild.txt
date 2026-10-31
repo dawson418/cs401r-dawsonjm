@@ -1,0 +1,58 @@
+==> Lab 2 teardown
+    Account : 649249221429
+    Region  : us-east-1
+    Bucket  : northstar-dev-data-649249221429
+
+{
+    "BucketArn": "arn:aws:s3:::northstar-dev-data-649249221429",
+    "BucketRegion": "us-east-1",
+    "AccessPointAlias": false
+}
+[1/7] Emptying northstar-dev-data-649249221429 (all versions and delete markers)
+      removed 117 Versions
+[2/7] Removing Feature Store Glue catalog database
+      deleted sagemaker_featurestore
+[2b/7] Removing orphaned Glue network interfaces
+[3/7] terraform destroy
+[0m[1mmodule.vpc.aws_security_group.this: Destruction complete after 1s[0m
+[0m[1mmodule.vpc.aws_vpc.this: Destroying... [id=vpc-01b2ff30b9f3bee85][0m[0m
+[0m[1mmodule.vpc.aws_vpc.this: Destruction complete after 1s[0m
+[0m[1m[32m
+Destroy complete! Resources: 34 destroyed.[0m
+[4/7] Removing orphaned SageMaker Studio EFS filesystems
+[5/7] Removing orphaned ENIs and SageMaker NFS security groups
+[6/7] Removing orphaned SageMaker lineage contexts and artifacts
+      unlinked eb4b70aa5ff1ca4f9a7f7e4c8bff8a50 -> northstar-churn-models-1792192385-aws-model-package-group
+      unlinked northstar-dev-customer-features-1792188542 -> northstar-dev-customer-features-1792188542-feature-group-pipeline-version
+      unlinked northstar-dev-customer-features-1792188542 -> northstar-dev-customer-features-1792188542-feature-group-pipeline
+      unlinked 08b1ddeab16a01ae27ab84e3dd682d35 -> eb4b70aa5ff1ca4f9a7f7e4c8bff8a50
+      unlinked 34613965d4898b4636208b283770c92d -> eb4b70aa5ff1ca4f9a7f7e4c8bff8a50
+      unlinked northstar-churn-models-1-1792192385-aws-model-package -> eb4b70aa5ff1ca4f9a7f7e4c8bff8a50
+      unlinked northstar-churn-models-1-PendingManualApproval-1792192385-aws-model-package -> eb4b70aa5ff1ca4f9a7f7e4c8bff8a50
+      unlinked northstar-dev-customer-features-1792188542 -> 1f7834e7fcc3271660f6a7e446eb45f6
+      deleted artifact 08b1ddeab16a01ae27ab84e3dd682d35
+      deleted artifact 34613965d4898b4636208b283770c92d
+      deleted artifact eb4b70aa5ff1ca4f9a7f7e4c8bff8a50
+      deleted artifact 1f7834e7fcc3271660f6a7e446eb45f6
+      deleted context northstar-churn-models-1792192385-aws-model-package-group
+      deleted context northstar-dev-customer-features-1792188542-feature-group-pipeline-version
+      deleted context northstar-dev-customer-features-1792188542
+      deleted context northstar-dev-customer-features-1792188542-feature-group-pipeline
+      deleted log group /aws-glue/crawlers
+      deleted log group /aws-glue/jobs/error
+      deleted log group /aws-glue/jobs/logs-v2
+      deleted log group /aws-glue/jobs/output
+[7/7] Verifying teardown
+      NAT gateways           OK
+      Elastic IPs            OK
+      SageMaker domains      OK
+      Feature groups         OK
+      EFS filesystems        OK
+      Glue jobs              OK
+      NorthStar VPCs         OK
+      Lineage contexts       OK
+      Lineage artifacts      OK
+      Glue databases         OK
+
+==> Teardown complete. No billable Lab 2 resources remain.
+    The Terraform state bucket is intentionally retained for Lab 3.

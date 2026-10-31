@@ -35,6 +35,13 @@ resource "aws_iam_policy" "ml_engineer" {
     Version = "2012-10-17"
     Statement = [
       {
+        Sid       = "PassSelfToSageMaker"
+        Effect    = "Allow"
+        Action    = ["iam:PassRole"]
+        Resource  = aws_iam_role.ml_engineer.arn
+        Condition = { StringEquals = { "iam:PassedToService" = "sagemaker.amazonaws.com" } }
+      },
+      {
         Effect   = "Allow"
         Action   = ["sagemaker:*"]
         Resource = "*"
