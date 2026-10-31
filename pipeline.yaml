@@ -352,6 +352,17 @@ Resources:
     Properties:
       Name: !Sub "${ProjectName}-pipeline"
       RoleArn: !GetAtt CodePipelineRole.Arn
+      # Push triggers only work on V2 pipelines. Without this block, a push to
+      # the branch is picked up by DetectChanges but never starts an execution.
+      PipelineType: V2
+      Triggers:
+        - ProviderType: CodeStarSourceConnection
+          GitConfiguration:
+            SourceActionName: GitHubSource
+            Push:
+              - Branches:
+                  Includes:
+                    - !Ref GitHubBranch
       ArtifactStore:
         Type: S3
         Location: !Ref ArtifactsBucket
