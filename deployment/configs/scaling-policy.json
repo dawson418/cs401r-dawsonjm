@@ -1,0 +1,13 @@
+{
+  "PolicyName": "northstar-churn-invocations-target",
+  "ServiceNamespace": "sagemaker",
+  "ResourceId": "endpoint/northstar-churn-prod/variant/champion",
+  "ScalableDimension": "sagemaker:variant:DesiredInstanceCount",
+  "PolicyType": "TargetTrackingScaling",
+  "TargetTrackingScalingPolicyConfiguration": {
+    "TargetValue": 1000.0,
+    "PredefinedMetricSpecification": {"PredefinedMetricType": "SageMakerVariantInvocationsPerInstance"},
+    "ScaleOutCooldown": 60,
+    "ScaleInCooldown": 600
+  }
+}

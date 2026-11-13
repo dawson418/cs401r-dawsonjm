@@ -47,6 +47,12 @@ resource "aws_iam_policy" "ml_engineer" {
         Resource = "*"
       },
       {
+        Sid      = "S3DataCaptureWrite"
+        Effect   = "Allow"
+        Action   = ["s3:PutObject", "s3:AbortMultipartUpload"]
+        Resource = "arn:aws:s3:::${var.bucket_name}/datacapture/*"
+      },
+      {
         Effect = "Allow"
         Action = [
           "s3:GetObject",
